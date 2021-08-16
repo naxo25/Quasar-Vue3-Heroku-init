@@ -2,9 +2,16 @@
   <router-view />
 </template>
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  setup() {
+    const store = inject('store')
+    store.dispatch('handleInit')
+    return {
+      store
+    }
+  }
 })
 </script>
