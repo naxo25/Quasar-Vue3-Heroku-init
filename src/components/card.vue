@@ -1,15 +1,13 @@
 <template>
   <q-card class="my-card" flat bordered>
     <q-img
-      :src="user.picture.large"
+      :src="picture.large"
     />
 
     <q-card-section>
-      <div class="text-overline text-orange-9"> {{ user.name }} </div>
-      <div class="text-h5 q-mt-sm q-mb-xs"> {{ user.id.value }} </div>
-      <div class="text-caption text-grey">
-        {{user.email }}
-      </div>
+      <div class="text-overline text-orange-9"> {{ name.title }} {{ name.first + ' ' + name.last }} </div>
+      <div class="text-h5 q-mt-sm q-mb-xs"> {{ id.value }} </div>
+      <div class="text-caption text-grey"> {{ email }} </div>
     </q-card-section>
 
     <q-card-actions>
@@ -44,7 +42,29 @@ import { ref } from 'vue'
 
 export default {
 	props: {
-		user: Array
+    name: {
+      type: Object,
+      required: true,
+      default: {
+        title: 'User',
+        first: 'not',
+        last: 'registred'
+      }
+    },
+    id: {
+      type: Object,
+      default: { value: 'ID not defined' }
+    },
+    email: {
+      type: String,
+      default: 'default@email.com'
+    },
+    picture: {
+      type: Object,
+      default: {
+        large: 'img/noimg.svg'
+      }
+    }
 	},
   setup () {
     return {
@@ -58,5 +78,5 @@ export default {
 <style lang="sass" scoped>
 .my-card
   width: 100%
-  max-width: 350px
+  max-width: 298px
 </style>
