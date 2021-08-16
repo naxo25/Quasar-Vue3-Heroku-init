@@ -1,27 +1,27 @@
-import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { getDataUsers } from '../api/api.js'
 
-// import example from './module-example'
+export default createStore({
+  state: {
+    users: {},
+    auth: true
+  },
+  mutations: {
+  },
+  actions: {
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
+    handleInit({ dispatch, state }) {
+      const router = useRouter()
+      // console.log(router)
 
-export default store(function (/* { ssrContext } */) {
-  const Store = createStore({
-    modules: {
-      // example
+      if (state.auth)
+        dispatch('getUsers')
     },
 
-    // enable strict mode (adds overhead!)
-    // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
-
-  return Store
+    async getUsers({ state }) {
+      state.users = await getDataUsers()
+      state.users.push({})
+    }
+  }
 })
