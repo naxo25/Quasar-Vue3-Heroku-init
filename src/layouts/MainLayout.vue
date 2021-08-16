@@ -25,6 +25,13 @@
       bordered
       class="bg-grey-1"
     >
+      <q-item-label
+        header
+        class="text-grey-8"
+      >
+        Links
+      </q-item-label>
+
       <q-list v-for='link in linksList' :key='link'>
         <q-item clickable tag="a" :to='link.to'>
           <q-item-section avatar>
